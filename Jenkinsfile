@@ -15,7 +15,7 @@ pipeline {
                 withCredentials([
                     file(credentialsId: 'ddns-sync.env', variable: 'ENV_FILE')
                 ]) {
-                    sh '''
+                    sh '''#!/bin/bash
                     set -e
 
                     source "$ENV_FILE"
