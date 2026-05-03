@@ -20,7 +20,7 @@ pipeline {
 
                     source "$ENV_FILE"
 
-                    CURRENT_IP=$(curl -s -m 10 https://cloudflare.com/cdn-cgi/trace | grep -E '^ip=' | cut -d= -f2)
+                    CURRENT_IP=$(curl -4 -s -m 10 https://cloudflare.com/cdn-cgi/trace | grep -E '^ip=' | cut -d= -f2)
 
                     if [[ ! $CURRENT_IP =~ ^[0-9]+\\.[0-9]+\\.[0-9]+\\.[0-9]+$ ]]; then
                         echo "$(date): Error: Failed to fetch a valid public IP. Got: $CURRENT_IP"
